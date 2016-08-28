@@ -91,7 +91,7 @@ dex2jar：将apk反编译成java源码（classes.dex转化成jar文件）
 jd-gui:查看APK中classes.dex转化成出的jar文件，即源码文件
 以Q">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SivanLiu">
+<meta property="og:title" content="Android反编译工具">
 <meta property="og:url" content="http://yoursite.com/2016/08/29/Android反编译工具/index.html">
 <meta property="og:site_name" content="SivanLiu">
 <meta property="og:description" content="Android反编译工具本文主要介绍当下比较流行的几种反编译Android apk的方式，包括：
@@ -100,20 +100,20 @@ apk官方地址：解压apk后便于资源文件获取，可以提取出图片�
 dex2jar：将apk反编译成java源码（classes.dex转化成jar文件）
 jd-gui:查看APK中classes.dex转化成出的jar文件，即源码文件
 以Q">
-<meta property="og:image" content="http://yoursite.com/C:\Users\Administrator\Desktop\1.png">
+<meta property="og:image" content="http://yoursite.com/F:\SivanLiu\Hexo\source\image\1.png">
 <meta property="og:image" content="http://yoursite.com/C:\Users\Administrator\Desktop\2.png">
 <meta property="og:image" content="http://yoursite.com/C:\Users\Administrator\Desktop\3.png">
 <meta property="og:image" content="http://yoursite.com/C:\Users\Administrator\Desktop\4.png">
-<meta property="og:updated_time" content="2016-08-28T17:05:57.254Z">
+<meta property="og:updated_time" content="2016-08-28T17:17:08.697Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SivanLiu">
+<meta name="twitter:title" content="Android反编译工具">
 <meta name="twitter:description" content="Android反编译工具本文主要介绍当下比较流行的几种反编译Android apk的方式，包括：
 1. apktool和dex2jar
 apk官方地址：解压apk后便于资源文件获取，可以提取出图片文件和布局文件进行使用查看。
 dex2jar：将apk反编译成java源码（classes.dex转化成jar文件）
 jd-gui:查看APK中classes.dex转化成出的jar文件，即源码文件
 以Q">
-<meta name="twitter:image" content="http://yoursite.com/C:\Users\Administrator\Desktop\1.png">
+<meta name="twitter:image" content="http://yoursite.com/F:\SivanLiu\Hexo\source\image\1.png">
 
 
 
@@ -136,7 +136,7 @@ jd-gui:查看APK中classes.dex转化成出的jar文件，即源码文件
 
   <link rel="canonical" href="http://yoursite.com/2016/08/29/Android反编译工具/"/>
 
-  <title>  | SivanLiu </title>
+  <title> Android反编译工具 | SivanLiu </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -276,7 +276,7 @@ jd-gui:查看APK中classes.dex转化成出的jar文件，即源码文件
             
             
               
-                
+                Android反编译工具
               
             
           </h1>
@@ -288,7 +288,7 @@ jd-gui:查看APK中classes.dex转化成出的jar文件，即源码文件
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-29T01:05:57+08:00" content="2016-08-29">
+            <time itemprop="dateCreated" datetime="2016-08-29T01:12:42+08:00" content="2016-08-29">
               2016-08-29
             </time>
           </span>
@@ -332,7 +332,7 @@ jd-gui:查看APK中classes.dex转化成出的jar文件，即源码文件
 <p>1）反编译apk得到程序的源代码、图片、XML配置、语言资源等文件:<br>Ctrl+R ——&gt; cmd，定位到apktool文件夹，根据apktool d -f [apk文件] [输出文件夹]）输入以下命令：</p>
 <pre><code>E:\Assemble\apktool&gt;apktool d E:\Assemble\com.tencent.mobileqq_6.5.3_liqucn.com.apk 
 </code></pre><p>qq文件中的内容如下，可以看到QQ反编译是不成功的，只能部分反编译：</p>
-<p><img src="C:\Users\Administrator\Desktop\1.png" alt=""></p>
+<p><img src="F:\SivanLiu\Hexo\source\image\1.png" alt=""></p>
 <p>2）Apk反编译得到Java源代码，将要反编译的APK后缀名改为.rar或则 .zip，并解压得到其中的classes.dex文件（该文件就是java文件编译再通过dx工具打包而成的），利用dex2jar工具将获取到的classes.dex进行反编译，命令如下：</p>
 <pre><code>E:\Assemble\dex2jar-2.0&gt;d2j-dex2jar.bat E:\Assemble\com.tencent.mobileqq_6.5.3_liqucn.com\classes.dex
 </code></pre><p>最后生成的文件目录如下，其中包含dex文件和各种资源文件：</p>
@@ -433,7 +433,7 @@ jd-gui:查看APK中classes.dex转化成出的jar文件，即源码文件
   <div class="comments" id="comments">
     
       <div class="ds-thread" data-thread-key="2016/08/29/Android反编译工具/"
-           data-title="" data-url="http://yoursite.com/2016/08/29/Android反编译工具/">
+           data-title="Android反编译工具" data-url="http://yoursite.com/2016/08/29/Android反编译工具/">
       </div>
     
   </div>
