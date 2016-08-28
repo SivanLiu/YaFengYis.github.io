@@ -1,3 +1,8 @@
+---
+title: Android反编译工具
+date: 2016/8/29 1:12:42 
+tags:
+---
 # **Android反编译工具** #
 
 本文主要介绍当下比较流行的几种反编译Android apk的方式，包括：
@@ -18,7 +23,7 @@ Ctrl+R ——> cmd，定位到apktool文件夹，根据apktool d -f [apk文件] 
     E:\Assemble\apktool>apktool d E:\Assemble\com.tencent.mobileqq_6.5.3_liqucn.com.apk 
 qq文件中的内容如下，可以看到QQ反编译是不成功的，只能部分反编译：
 
-![](C:\Users\Administrator\Desktop\1.png)
+![](F:\SivanLiu\Hexo\source\image\1.png)
 
 2）Apk反编译得到Java源代码，将要反编译的APK后缀名改为.rar或则 .zip，并解压得到其中的classes.dex文件（该文件就是java文件编译再通过dx工具打包而成的），利用dex2jar工具将获取到的classes.dex进行反编译，命令如下：
 
