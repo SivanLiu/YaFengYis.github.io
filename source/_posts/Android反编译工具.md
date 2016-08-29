@@ -23,18 +23,18 @@ Ctrl+R ——> cmd，定位到apktool文件夹，根据apktool d -f [apk文件] 
     E:\Assemble\apktool>apktool d E:\Assemble\com.tencent.mobileqq_6.5.3_liqucn.com.apk 
 qq文件中的内容如下，可以看到QQ反编译是不成功的，只能部分反编译：
 
-![](https://github.com/YaFengYi/YaFengYi.github.io/tree/src/source/image/1.png)
+![](http://ococzubug.bkt.clouddn.com/1.png?attname=&e=1472484427&token=Eyl9DyX0WeWOeyWwoCcYlqx5dmMI4_EgUq5C2s8G:51w5dCIYuFpKG_2foGGFegwIBN0)
 
 2）Apk反编译得到Java源代码，将要反编译的APK后缀名改为.rar或则 .zip，并解压得到其中的classes.dex文件（该文件就是java文件编译再通过dx工具打包而成的），利用dex2jar工具将获取到的classes.dex进行反编译，命令如下：
 
     E:\Assemble\dex2jar-2.0>d2j-dex2jar.bat E:\Assemble\com.tencent.mobileqq_6.5.3_liqucn.com\classes.dex
 最后生成的文件目录如下，其中包含dex文件和各种资源文件：
 
-![](https://github.com/YaFengYi/YaFengYi.github.io/tree/src/source/image/2.png)
+![](http://ococzubug.bkt.clouddn.com/2.png?attname=&e=1472484427&token=Eyl9DyX0WeWOeyWwoCcYlqx5dmMI4_EgUq5C2s8G:vMCH4aRj2SGTz_Eg0pg27O0d9cc)
 
 3）经过第2步之后便会生成一个classes_dex2jar.jar的文件，利用jd-gui工具打开该文件，便可以看到源码了，效果如下：
 
-![](https://github.com/YaFengYi/YaFengYi.github.io/tree/src/source/image/3.png)
+![](http://ococzubug.bkt.clouddn.com/3.png?attname=&e=1472484427&token=Eyl9DyX0WeWOeyWwoCcYlqx5dmMI4_EgUq5C2s8G:iiBXZkkbfFhK86jINALbS1QJSe0)
 
 **2. [jadx](https://github.com/skylot/jadx)**
 
@@ -61,7 +61,7 @@ liqucn.com\classes.dex
 
 结果和jd-gui一样，但是jadx功能更加丰富，如下
 
-![](https://github.com/YaFengYi/YaFengYi.github.io/tree/src/source/image/4.png)
+![](http://ococzubug.bkt.clouddn.com/4.png?attname=&e=1472484427&token=Eyl9DyX0WeWOeyWwoCcYlqx5dmMI4_EgUq5C2s8G:5ePdkks2E_5EFQXClek0dqtzsdQ)
 
 **3. [Androguard](https://code.google.com/archive/p/androguard/)**
 
