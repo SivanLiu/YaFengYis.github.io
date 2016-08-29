@@ -318,13 +318,13 @@
 <p>1）反编译apk得到程序的源代码、图片、XML配置、语言资源等文件:<br>Ctrl+R ——&gt; cmd，定位到apktool文件夹，根据apktool d -f [apk文件] [输出文件夹]）输入以下命令：</p>
 <pre><code>E:\Assemble\apktool&gt;apktool d E:\Assemble\com.tencent.mobileqq_6.5.3_liqucn.com.apk 
 </code></pre><p>qq文件中的内容如下，可以看到QQ反编译是不成功的，只能部分反编译：</p>
-<p><img src="https://github.com/YaFengYi/YaFengYi.github.io/tree/src/source/image/1.png" alt=""></p>
+<p><img src="http://ococzubug.bkt.clouddn.com/1.png?attname=&amp;e=1472484427&amp;token=Eyl9DyX0WeWOeyWwoCcYlqx5dmMI4_EgUq5C2s8G:51w5dCIYuFpKG_2foGGFegwIBN0" alt=""></p>
 <p>2）Apk反编译得到Java源代码，将要反编译的APK后缀名改为.rar或则 .zip，并解压得到其中的classes.dex文件（该文件就是java文件编译再通过dx工具打包而成的），利用dex2jar工具将获取到的classes.dex进行反编译，命令如下：</p>
 <pre><code>E:\Assemble\dex2jar-2.0&gt;d2j-dex2jar.bat E:\Assemble\com.tencent.mobileqq_6.5.3_liqucn.com\classes.dex
 </code></pre><p>最后生成的文件目录如下，其中包含dex文件和各种资源文件：</p>
-<p><img src="https://github.com/YaFengYi/YaFengYi.github.io/tree/src/source/image/2.png" alt=""></p>
+<p><img src="http://ococzubug.bkt.clouddn.com/2.png?attname=&amp;e=1472484427&amp;token=Eyl9DyX0WeWOeyWwoCcYlqx5dmMI4_EgUq5C2s8G:vMCH4aRj2SGTz_Eg0pg27O0d9cc" alt=""></p>
 <p>3）经过第2步之后便会生成一个classes_dex2jar.jar的文件，利用jd-gui工具打开该文件，便可以看到源码了，效果如下：</p>
-<p><img src="https://github.com/YaFengYi/YaFengYi.github.io/tree/src/source/image/3.png" alt=""></p>
+<p><img src="http://ococzubug.bkt.clouddn.com/3.png?attname=&amp;e=1472484427&amp;token=Eyl9DyX0WeWOeyWwoCcYlqx5dmMI4_EgUq5C2s8G:iiBXZkkbfFhK86jINALbS1QJSe0" alt=""></p>
 <p><strong>2. <a href="https://github.com/skylot/jadx" target="_blank" rel="external">jadx</a></strong></p>
 <p>前些天在github上寻觅到了一个新的反编译工具Jadx，方便实用，用法超级简单，命令行直接搞定，个人认为比apktool+dex2jar+jd-gui要方便很多；jadx可以直接反编译.apk文件，也可以反编译解压出的classes.dex文件。使用过程如下：</p>
 <p>1）安装：<br><a href="https://github.com/skylot/jadx/archive/master.zip" target="_blank" rel="external">直接下载jadx,解压</a></p>
@@ -338,7 +338,7 @@
 <pre><code>E:\Assemble\jadx\build\jadx\bin&gt;jadx-gui E:\Assemble\com.tencent.mobileqq_6.5.3_
 </code></pre><p>liqucn.com\classes.dex</p>
 <p>结果和jd-gui一样，但是jadx功能更加丰富，如下</p>
-<p><img src="https://github.com/YaFengYi/YaFengYi.github.io/tree/src/source/image/4.png" alt=""></p>
+<p><img src="http://ococzubug.bkt.clouddn.com/4.png?attname=&amp;e=1472484427&amp;token=Eyl9DyX0WeWOeyWwoCcYlqx5dmMI4_EgUq5C2s8G:5ePdkks2E_5EFQXClek0dqtzsdQ" alt=""></p>
 <p><strong>3. <a href="https://code.google.com/archive/p/androguard/" target="_blank" rel="external">Androguard</a></strong></p>
 <p>1)使用DAD作为反编译器</p>
 <p>2)可以分析恶意软件</p>
