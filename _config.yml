@@ -65,8 +65,8 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 theme: hexo-theme-next
 
-#avator
-avator: /uploads/lyg.jpg
+#头像
+avatar: /images/lyg.jpg
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
