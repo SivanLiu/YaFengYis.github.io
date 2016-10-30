@@ -7,7 +7,7 @@ tags:
 
 <font size=4>好久没更新博客了，因此把最近遇到的问题记录下来，主要包括以下2个问题，以供大家参考！</font>
 
-###1. Android studio升级到2.2.0之后，Robolectric配置的单元测试无结果输出###
+<font size=3>1. Android studio升级到2.2.0之后，Robolectric配置的单元测试无结果输出</font>
 
 在Android studio更新到2.2.0之后，发现单元测试用例都跑不通，苦思不得其解
 
@@ -21,7 +21,7 @@ tags:
 	Robolectric 3.1.2
 	Mockito 1.10.19
 
-*更新后的配置
+更新后的配置
 
 	Android studio 2.1.9
 	Gradle plugin version: 2.2.0
@@ -80,7 +80,7 @@ tags:
 因此该问题就解决了！
 
 
-###2. gradle利用maven-publish脚本打包library到maven仓库问题###
+<font size=3>2. gradle利用maven-publish脚本打包library到maven仓库问题</font>
 由于项目需要，需要将自己的library打包上传到公司的maven服务器，由于以前用的是maven插件来打包library库，但是发现十分麻烦，而且不太灵活；最后发现有maven-publish插件，于是就通过maven-publish来写了个脚本，实现一键打包上传到仓库，十分方便，而且通用、灵活。
 
 既可以上传到私有maven，又可以上传到公司的maven仓库，debug和release版本可以同时发布。
