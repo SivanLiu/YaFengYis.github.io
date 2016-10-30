@@ -311,15 +311,40 @@
       
         
           
-            <p>#</p>
-<p>#gradle脚本问题<br>#</p>
-<p><font size="4">好久没更新博客了，因此把最近遇到的问题记录下来，主要包括以下2个问题，以供大家参考！</font><br>#</p>
-<p>###1. Android studio升级到2.2.0之后，Robolectric配置的单元测试无结果输出<br>#<br>在Android studio更新到2.2.0之后，发现单元测试用例都跑不通，苦思不得其解<br>#</p>
-<ul>
-<li>更新前的配置：<br>#<br>  Android studio 2.1.9<br>  Gradle plugin version: 2.2.0<br>  Gradle version: 2.14.1<br>  Build tools version: 24.0.2<br>  JUnit 4.12<br>  Robolectric 3.1.2<br>  Mockito 1.10.19<br>#</li>
-<li>更新后的配置<br>#<br>  Android studio 2.1.9<br>  Gradle plugin version: 2.2.0<br>  Gradle version: 2.14.1<br>  Build tools version: 24.0.2<br>  JUnit 4.12<br>  Robolectric 3.1.2<br>  Mockito 1.10.19<br>#<br>仅仅是Android studio升级了，其他都没有变化，结果单元测试却跑不过。<br>首先从兼容性入手，排查是否是因为Android studio 2.2.0与Robolectri、JUnit、Mockito的版本不兼容问题，几经尝试，排除了兼容性问题。最后发现Robolectric每次运行的时候会去读取工程的Manifest文件,默认路径如下：<br>#<br>  if (FileFsFile.from(buildOutputDir, “manifests”).exists()) {<pre><code>manifest = FileFsFile.from(buildOutputDir, &quot;manifests&quot;, &quot;full&quot;, flavor, abiSplit, type, DEFAULT_MANIFEST_NAME);
-</code></pre>  } else {<pre><code>manifest = FileFsFile.from(buildOutputDir, &quot;bundles&quot;, flavor, abiSplit, type, DEFAULT_MANIFEST_NAME);
-</code></pre>  }<br>在我的工程里面先前是：<br>#<br>  build/intermediates/manifests/full/debug/AndroidManifest.xml<br>在Android studio升级后，Manifest路径变成了：<br>#<br>  build/intermediates/manifests/aapt/debug/AndroidManifest.xml<br>因此单元测试用例都无法通过，因此需要修改Robolectric读取的Manifest默认路径，我通过反射方法修改了其默认路径：<br>#<br>   @Override<br>  protected AndroidManifest getAppManifest(final Config config) {<pre><code>AndroidManifest appManifest = super.getAppManifest(config);
+            <font size="4">好久没更新博客了，因此把最近遇到的问题记录下来，主要包括以下2个问题，以供大家参考！</font>
+
+<p>###1. Android studio升级到2.2.0之后，Robolectric配置的单元测试无结果输出###</p>
+<p>在Android studio更新到2.2.0之后，发现单元测试用例都跑不通，苦思不得其解</p>
+<p>更新前的配置：</p>
+<pre><code>Android studio 2.1.9
+Gradle plugin version: 2.2.0
+Gradle version: 2.14.1
+Build tools version: 24.0.2
+JUnit 4.12
+Robolectric 3.1.2
+Mockito 1.10.19
+</code></pre><p>*更新后的配置</p>
+<pre><code>Android studio 2.1.9
+Gradle plugin version: 2.2.0
+Gradle version: 2.14.1
+Build tools version: 24.0.2
+JUnit 4.12
+Robolectric 3.1.2
+Mockito 1.10.19
+</code></pre><p>仅仅是Android studio升级了，其他都没有变化，结果单元测试却跑不过。<br>首先从兼容性入手，排查是否是因为Android studio 2.2.0与Robolectri、JUnit、Mockito的版本不兼容问题，几经尝试，排除了兼容性问题。最后发现Robolectric每次运行的时候会去读取工程的Manifest文件,默认路径如下：</p>
+<pre><code>if (FileFsFile.from(buildOutputDir, &quot;manifests&quot;).exists()) {
+  manifest = FileFsFile.from(buildOutputDir, &quot;manifests&quot;, &quot;full&quot;, flavor, abiSplit, type, DEFAULT_MANIFEST_NAME);
+} else {
+  manifest = FileFsFile.from(buildOutputDir, &quot;bundles&quot;, flavor, abiSplit, type, DEFAULT_MANIFEST_NAME);
+}    
+</code></pre><p>在我的工程里面先前是：</p>
+<pre><code>build/intermediates/manifests/full/debug/AndroidManifest.xml
+</code></pre><p>在Android studio升级后，Manifest路径变成了：</p>
+<pre><code>build/intermediates/manifests/aapt/debug/AndroidManifest.xml
+</code></pre><p>因此单元测试用例都无法通过，因此需要修改Robolectric读取的Manifest默认路径，我通过反射方法修改了其默认路径：</p>
+<pre><code>@Override
+protected AndroidManifest getAppManifest(final Config config) {
+AndroidManifest appManifest = super.getAppManifest(config);
 if (config.manifest() != null &amp;&amp; !&quot;&quot;.equals(config.manifest())) {
     FileFsFile manifestFile = FileFsFile.from(config.manifest());
     Class&lt;? extends AndroidManifest&gt; appManifestClass = null;
@@ -340,92 +365,105 @@ if (config.manifest() != null &amp;&amp; !&quot;&quot;.equals(config.manifest())
     }
 }
 return appManifest;
-</code></pre>  }<br>最后在配置的Config的时候直接指定Manifest的路径即可：<br>#<br>  @Config(constants = BuildConfig.class,<pre><code>manifest = &quot;src/main/AndroidManifest.xml&quot;,
-shadows = {ShadowMyManager.class,}, sdk = 23)
-</code></pre>因此该问题就解决了！</li>
-</ul>
-<p>##</p>
-<p>###2. gradle利用maven-publish脚本打包library到maven仓库问题<br>由于项目需要，需要将自己的library打包上传到公司的maven服务器，由于以前用的是maven插件来打包library库，但是发现十分麻烦，而且不太灵活；最后发现有maven-publish插件，于是就通过maven-publish来写了个脚本，实现一键打包上传到仓库，十分方便，而且通用、灵活。<br>#</p>
-<ul>
-<li><p>既可以上传到私有maven，又可以上传到公司的maven仓库，debug和release版本可以同时发布。<br>#<br>  apply plugin: ‘maven-publish’<br>  def getRepositoryUsername() {<br>  return hasProperty(‘NEXUS_USERNAME’) ? NEXUS_USERNAME : “”<br>  }</p>
-<p>  def getRepositoryPassword() {<br>  return hasProperty(‘NEXUS_PASSWORD’) ? NEXUS_PASSWORD : “”<br>  }</p>
-<p>  task androidSourcesJar(type: Jar) {<br>  classifier = ‘sources’<br>  from android.sourceSets.main.java.srcDirs<br>  }</p>
-<p>  publishing {</p>
-<pre><code>repositories {
-    maven {
-        credentials {
-            username getRepositoryUsername()
-            password getRepositoryPassword()
-        }
-        name &apos;Repository-Remote-Release&apos;
-        url RELEASE_REPOSITORY_URL
-    }
-    maven {
-        credentials {
-            username getRepositoryUsername()
-            password getRepositoryPassword()
-        }
-        name &apos;Repository-Remote-Snapshot&apos;
-        url SANPSHOT_REPOSITORY_URL
-    }
 }
-</code></pre><p>  publications {</p>
-<pre><code>// Create different publications for every build types (debug and release)
-android.libraryVariants.all { variant -&gt;
-    &quot;${variant.name}&quot;(MavenPublication) {
-        //Create aar or jar
-        if ((&quot;aar&quot;).equals(POM_PACKAGING)) {
-            artifact bundleRelease
-        } else if ((&quot;jar&quot;).equals(POM_PACKAGING)) {
-            def name = variant.buildType.name
-            def task = project.tasks.create &quot;jar${name.capitalize()}&quot;, Jar
-            task.dependsOn variant.javaCompile
-            task.from variant.javaCompile.destinationDir
-            task.exclude(&quot;**/R.class&quot;)
-            task.exclude(&quot;**/R\$**.class&quot;)
-            artifact task
+</code></pre><p>最后在配置的Config的时候直接指定Manifest的路径即可：</p>
+<pre><code>@Config(constants = BuildConfig.class,
+    manifest = &quot;src/main/AndroidManifest.xml&quot;,
+    shadows = {ShadowMyManager.class,}, sdk = 23)
+</code></pre><p>因此该问题就解决了！</p>
+<p>###2. gradle利用maven-publish脚本打包library到maven仓库问题###<br>由于项目需要，需要将自己的library打包上传到公司的maven服务器，由于以前用的是maven插件来打包library库，但是发现十分麻烦，而且不太灵活；最后发现有maven-publish插件，于是就通过maven-publish来写了个脚本，实现一键打包上传到仓库，十分方便，而且通用、灵活。</p>
+<p>既可以上传到私有maven，又可以上传到公司的maven仓库，debug和release版本可以同时发布。</p>
+<pre><code>apply plugin: &apos;maven-publish&apos;
+def getRepositoryUsername() {
+return hasProperty(&apos;NEXUS_USERNAME&apos;) ? NEXUS_USERNAME : &quot;&quot;
+}
+
+def getRepositoryPassword() {
+return hasProperty(&apos;NEXUS_PASSWORD&apos;) ? NEXUS_PASSWORD : &quot;&quot;
+}
+
+task androidSourcesJar(type: Jar) {
+classifier = &apos;sources&apos;
+from android.sourceSets.main.java.srcDirs
+}
+
+publishing {
+    repositories {
+        maven {
+            credentials {
+                username getRepositoryUsername()
+                password getRepositoryPassword()
+            }
+            name &apos;Repository-Remote-Release&apos;
+            url RELEASE_REPOSITORY_URL
         }
-        artifact androidSourcesJar
-
-        if (&quot;${variant.name}&quot;.equalsIgnoreCase(&quot;debug&quot;)) {
-            publications.&quot;${variant.name}&quot;.version = project.version + &quot;-SNAPSHOT&quot;
-
-        } else {
-            publications.&quot;${variant.name}&quot;.version = project.version
+        maven {
+            credentials {
+                username getRepositoryUsername()
+                password getRepositoryPassword()
+            }
+            name &apos;Repository-Remote-Snapshot&apos;
+            url SANPSHOT_REPOSITORY_URL
         }
-        artifactId = POM_ARTIFACT_ID
-        groupId = GROUP
+    }
+publications {
 
-        pom.withXml {
-            def dependenciesNode = asNode().appendNode(&apos;dependencies&apos;)
+        // Create different publications for every build types (debug and release)
+        android.libraryVariants.all { variant -&gt;
+            &quot;${variant.name}&quot;(MavenPublication) {
+                //Create aar or jar
+                if ((&quot;aar&quot;).equals(POM_PACKAGING)) {
+                    artifact bundleRelease
+                } else if ((&quot;jar&quot;).equals(POM_PACKAGING)) {
+                    def name = variant.buildType.name
+                    def task = project.tasks.create &quot;jar${name.capitalize()}&quot;, Jar
+                    task.dependsOn variant.javaCompile
+                    task.from variant.javaCompile.destinationDir
+                    task.exclude(&quot;**/R.class&quot;)
+                    task.exclude(&quot;**/R\$**.class&quot;)
+                    artifact task
+                }
+                artifact androidSourcesJar
 
-            def configurationNames = [&quot;${variant.name}Compile&quot;, &apos;compile&apos;]
+                if (&quot;${variant.name}&quot;.equalsIgnoreCase(&quot;debug&quot;)) {
+                    publications.&quot;${variant.name}&quot;.version = project.version + &quot;-SNAPSHOT&quot;
 
-            configurationNames.each { configurationName -&gt;
-                this.configurations[configurationName].allDependencies.each {
-                    if (it.group != null &amp;&amp; it.name != null) {
-                        def dependencyNode = dependenciesNode.appendNode(&apos;dependency&apos;)
-                        dependencyNode.appendNode(&apos;groupId&apos;, it.group)
-                        dependencyNode.appendNode(&apos;artifactId&apos;, it.name)
-                        dependencyNode.appendNode(&apos;version&apos;, it.version)
+                } else {
+                    publications.&quot;${variant.name}&quot;.version = project.version
+                }
+                artifactId = POM_ARTIFACT_ID
+                groupId = GROUP
 
-                        if (it.excludeRules.size() &gt; 0) {
-                            def exclusionsNode = dependencyNode.appendNode(&apos;exclusions&apos;)
-                            it.excludeRules.each { rule -&gt;
-                                def exclusionNode = exclusionsNode.appendNode(&apos;exclusion&apos;)
-                                exclusionNode.appendNode(&apos;groupId&apos;, rule.group)
-                                exclusionNode.appendNode(&apos;artifactId&apos;, rule.module)
+                pom.withXml {
+                    def dependenciesNode = asNode().appendNode(&apos;dependencies&apos;)
+
+                    def configurationNames = [&quot;${variant.name}Compile&quot;, &apos;compile&apos;]
+
+                    configurationNames.each { configurationName -&gt;
+                        this.configurations[configurationName].allDependencies.each {
+                            if (it.group != null &amp;&amp; it.name != null) {
+                                def dependencyNode = dependenciesNode.appendNode(&apos;dependency&apos;)
+                                dependencyNode.appendNode(&apos;groupId&apos;, it.group)
+                                dependencyNode.appendNode(&apos;artifactId&apos;, it.name)
+                                dependencyNode.appendNode(&apos;version&apos;, it.version)
+
+                                if (it.excludeRules.size() &gt; 0) {
+                                    def exclusionsNode = dependencyNode.appendNode(&apos;exclusions&apos;)
+                                    it.excludeRules.each { rule -&gt;
+                                        def exclusionNode = exclusionsNode.appendNode(&apos;exclusion&apos;)
+                                        exclusionNode.appendNode(&apos;groupId&apos;, rule.group)
+                                        exclusionNode.appendNode(&apos;artifactId&apos;, rule.module)
+                                    }
+                                }
                             }
                         }
                     }
                 }
             }
         }
-    }
+
+
 }
-</code></pre></li>
-</ul>
-<pre><code>}
 }
 task publishRelease(dependsOn: [
         &apos;generatePomFileForReleasePublication&apos;,
@@ -460,7 +498,13 @@ gradle.taskGraph.whenReady { taskGraph -&gt;
         }
     }
 }
-</code></pre><p>私有的Maven可以自己配置，不在赘述。<br>在需要发布library的模块中的build.gradle脚本中直接引用该脚本即可：<br>#<br>    apply from: “$rootDir/maven_publish.gradle”<br>执行命令：<br>#<br>    gradle publish（分别发布release和debug版本到release和snapshot仓库中）<br>    gradle publishDebug（发布debug版本到snapshot仓库中）<br>    gradle publishRelease（发布release版本到release仓库中）<br>#<br>暂定写到这儿，还有几个问题，下次再总结！！！</p>
+</code></pre><p>私有的Maven可以自己配置，不在赘述。<br>在需要发布library的模块中的build.gradle脚本中直接引用该脚本即可：</p>
+<pre><code>apply from: &quot;$rootDir/maven_publish.gradle&quot;
+</code></pre><p>执行命令：</p>
+<pre><code>gradle publish（分别发布release和debug版本到release和snapshot仓库中）
+gradle publishDebug（发布debug版本到snapshot仓库中）
+gradle publishRelease（发布release版本到release仓库中）
+</code></pre><p>暂定写到这儿，还有几个问题，下次再总结！！！</p>
 
           
         
