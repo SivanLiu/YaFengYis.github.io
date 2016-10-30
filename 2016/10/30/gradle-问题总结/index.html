@@ -84,15 +84,31 @@
 
 
 
-<meta name="description" content="雅兴至然，随风而懿">
-<meta property="og:type" content="website">
-<meta property="og:title" content="SivanLiu">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="#
+#gradle脚本问题#
+好久没更新博客了，因此把最近遇到的问题记录下来，主要包括以下2个问题，以供大家参考！#
+###1. Android studio升级到2.2.0之后，Robolectric配置的单元测试无结果输出#在Android studio更新到2.2.0之后，发现单元测试用例都跑不通，苦思不得其解#
+
+更新前的配置：#  Android studio 2.1.9  Gradle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gradle 问题总结">
+<meta property="og:url" content="http://yoursite.com/2016/10/30/gradle-问题总结/index.html">
 <meta property="og:site_name" content="SivanLiu">
-<meta property="og:description" content="雅兴至然，随风而懿">
+<meta property="og:description" content="#
+#gradle脚本问题#
+好久没更新博客了，因此把最近遇到的问题记录下来，主要包括以下2个问题，以供大家参考！#
+###1. Android studio升级到2.2.0之后，Robolectric配置的单元测试无结果输出#在Android studio更新到2.2.0之后，发现单元测试用例都跑不通，苦思不得其解#
+
+更新前的配置：#  Android studio 2.1.9  Gradle">
+<meta property="og:updated_time" content="2016-10-30T03:59:30.286Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SivanLiu">
-<meta name="twitter:description" content="雅兴至然，随风而懿">
+<meta name="twitter:title" content="gradle 问题总结">
+<meta name="twitter:description" content="#
+#gradle脚本问题#
+好久没更新博客了，因此把最近遇到的问题记录下来，主要包括以下2个问题，以供大家参考！#
+###1. Android studio升级到2.2.0之后，Robolectric配置的单元测试无结果输出#在Android studio更新到2.2.0之后，发现单元测试用例都跑不通，苦思不得其解#
+
+更新前的配置：#  Android studio 2.1.9  Gradle">
 
 
 
@@ -113,9 +129,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/10/30/gradle-问题总结/"/>
 
-  <title> SivanLiu </title>
+  <title> gradle 问题总结 | SivanLiu </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -136,9 +152,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left 
-   page-home 
- ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -235,9 +249,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
   
@@ -257,10 +271,7 @@
             
             
               
-                
-                <a class="post-title-link" href="/2016/10/30/gradle-问题总结/" itemprop="url">
-                  gradle 问题总结
-                </a>
+                gradle 问题总结
               
             
           </h1>
@@ -291,6 +302,10 @@
           
 		  
 			
+			<span>&nbsp; | &nbsp;
+			<span id="busuanzi_value_page_pv" ></span>次阅读
+			</span>    
+			
 
           
 
@@ -309,9 +324,7 @@
       
 
       
-        
-          
-            <p>#</p>
+        <p>#</p>
 <p>#gradle脚本问题<br>#</p>
 <p><font size="4">好久没更新博客了，因此把最近遇到的问题记录下来，主要包括以下2个问题，以供大家参考！</font><br>#</p>
 <p>###1. Android studio升级到2.2.0之后，Robolectric配置的单元测试无结果输出<br>#<br>在Android studio更新到2.2.0之后，发现单元测试用例都跑不通，苦思不得其解<br>#</p>
@@ -462,16 +475,20 @@ gradle.taskGraph.whenReady { taskGraph -&gt;
 }
 </code></pre><p>私有的Maven可以自己配置，不在赘述。<br>在需要发布library的模块中的build.gradle脚本中直接引用该脚本即可：<br>#<br>    apply from: “$rootDir/maven_publish.gradle”<br>执行命令：<br>#<br>    gradle publish（分别发布release和debug版本到release和snapshot仓库中）<br>    gradle publishDebug（发布debug版本到snapshot仓库中）<br>    gradle publishRelease（发布release版本到release仓库中）<br>#<br>暂定写到这儿，还有几个问题，下次再总结！！！</p>
 
-          
+      
+    </div>
+
+    <div>
+      
         
+
       
     </div>
 
     <div>
       
-    </div>
+        
 
-    <div>
       
     </div>
 
@@ -479,288 +496,32 @@ gradle.taskGraph.whenReady { taskGraph -&gt;
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/08/29/Android反编译工具/" rel="next" title="Android反编译工具">
+                <i class="fa fa-chevron-left"></i> Android反编译工具
+              </a>
             
-              
-                
-                <a class="post-title-link" href="/2016/08/29/Android反编译工具/" itemprop="url">
-                  Android反编译工具
-                </a>
-              
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-29T01:12:42+08:00" content="2016-08-29">
-              2016-08-29
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/29/Android反编译工具/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/29/Android反编译工具/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-		  
-			
-
-          
-
-          
-          
-
-          
+          </div>
         </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>本文主要介绍当下比较流行的几种反编译Android apk的方式，包括：</p>
-<p><strong>1. apktool和dex2jar</strong></p>
-<p><a href="https://ibotpeaches.github.io/Apktool/" target="_blank" rel="external">apk官方地址</a>：解压apk后便于资源文件获取，可以提取出图片文件和布局文件进行使用查看。</p>
-<p><a href="https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/innlab/dex2jar-0.0.7.11-SNAPSHOT.zip" target="_blank" rel="external">dex2jar</a>：将apk反编译成java源码（classes.dex转化成jar文件）</p>
-<p><a href="https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/innlab/jd-gui-0.3.3.windows.zip" target="_blank" rel="external">jd-gui</a>:查看APK中classes.dex转化成出的jar文件，即源码文件</p>
-<p>以QQ为例，反编译过程如下：</p>
-<p>1）反编译apk得到程序的源代码、图片、XML配置、语言资源等文件:<br>Ctrl+R ——&gt; cmd，定位到apktool文件夹，根据apktool d -f [apk文件] [输出文件夹]）输入以下命令：</p>
-<pre><code>E:\Assemble\apktool&gt;apktool d E:\Assemble\com.tencent.mobileqq_6.5.3_liqucn.com.apk 
-</code></pre><p>qq文件中的内容如下，可以看到QQ反编译是不成功的，只能部分反编译：</p>
-<p><img src="http://ococzubug.bkt.clouddn.com/1.png?attname=&amp;e=1472484427&amp;token=Eyl9DyX0WeWOeyWwoCcYlqx5dmMI4_EgUq5C2s8G:51w5dCIYuFpKG_2foGGFegwIBN0" alt=""></p>
-<p>2）Apk反编译得到Java源代码，将要反编译的APK后缀名改为.rar或则 .zip，并解压得到其中的classes.dex文件（该文件就是java文件编译再通过dx工具打包而成的），利用dex2jar工具将获取到的classes.dex进行反编译，命令如下：</p>
-<pre><code>E:\Assemble\dex2jar-2.0&gt;d2j-dex2jar.bat E:\Assemble\com.tencent.mobileqq_6.5.3_liqucn.com\classes.dex
-</code></pre><p>最后生成的文件目录如下，其中包含dex文件和各种资源文件：</p>
-<p><img src="http://ococzubug.bkt.clouddn.com/2.png?attname=&amp;e=1472484427&amp;token=Eyl9DyX0WeWOeyWwoCcYlqx5dmMI4_EgUq5C2s8G:vMCH4aRj2SGTz_Eg0pg27O0d9cc" alt=""></p>
-<p>3）经过第2步之后便会生成一个classes_dex2jar.jar的文件，利用jd-gui工具打开该文件，便可以看到源码了，效果如下：</p>
-<p><img src="http://ococzubug.bkt.clouddn.com/3.png?attname=&amp;e=1472484427&amp;token=Eyl9DyX0WeWOeyWwoCcYlqx5dmMI4_EgUq5C2s8G:iiBXZkkbfFhK86jINALbS1QJSe0" alt=""></p>
-<p><strong>2. <a href="https://github.com/skylot/jadx" target="_blank" rel="external">jadx</a></strong></p>
-<p>前些天在github上寻觅到了一个新的反编译工具Jadx，方便实用，用法超级简单，命令行直接搞定，个人认为比apktool+dex2jar+jd-gui要方便很多；jadx可以直接反编译.apk文件，也可以反编译解压出的classes.dex文件。使用过程如下：</p>
-<p>1）安装：<br><a href="https://github.com/skylot/jadx/archive/master.zip" target="_blank" rel="external">直接下载jadx,解压</a></p>
-<p>解压后通过cmd命令行cd到jadx目录中，执行gradlew dist命令（针对windows），gradlew任务执行完毕之后，会生成一个build文件夹,至此安装完毕。</p>
-<p>2）直接反编译.apk文件</p>
-<p>进入到jadx\build\jadx\bin中：</p>
-<p>执行反编译apk命令：</p>
-<pre><code>E:\Assemble\jadx\build\jadx\bin&gt;jadx-gui E:\Assemble\com.tencent.mobileqq_6.5.3_
-</code></pre><p>liqucn.com.apk</p>
-<p>查看dex文件命令：</p>
-<pre><code>E:\Assemble\jadx\build\jadx\bin&gt;jadx-gui E:\Assemble\com.tencent.mobileqq_6.5.3_
-</code></pre><p>liqucn.com\classes.dex</p>
-<p>结果和jd-gui一样，但是jadx功能更加丰富，如下</p>
-<p><img src="http://ococzubug.bkt.clouddn.com/4.png?attname=&amp;e=1472484427&amp;token=Eyl9DyX0WeWOeyWwoCcYlqx5dmMI4_EgUq5C2s8G:5ePdkks2E_5EFQXClek0dqtzsdQ" alt=""></p>
-<p><strong>3. <a href="https://code.google.com/archive/p/androguard/" target="_blank" rel="external">Androguard</a></strong></p>
-<p>1)使用DAD作为反编译器</p>
-<p>2)可以分析恶意软件</p>
-<p>3)有python api，可以写扩展</p>
-<p>4)支持可视化 </p>
-<p><strong>4. <a href="https://github.com/google/enjarify" target="_blank" rel="external">Enjarfy</a></strong></p>
-<p>enjarify是由Google官方新出品的基于Python3开发，类似dex2jar的一个将Dalvik字节码转换成相对应的Java字节码开源工具，官方宣称有比dex2jar更优秀的兼容性，准确性及更高的效率。</p>
-<p>1)可以将dalvik bytecode转化为java bytecode</p>
-<p>2)比dex2jar支持case更多</p>
-<p><strong>5. <a href="https://www.pnfsoftware.com/" target="_blank" rel="external">JEB</a></strong></p>
-<p> JEB是一个功能强大的为安全专业人士设计的Android应用程序的反编译工具。用于逆向工程或审计APK文件，可以提高效率减少许多工程师的分析时间。</p>
-<p>1)全面的Dalvik反编译器:JEB的独特功能是，其Dalvik字节码反编译为Java源代码的能力。无需DEX-JAR转换工具。我们公司内部的反编译器需要考虑的Dalvik的细微之处，并明智地使用目前在DEX文件的元数据。</p>
-<p>2)交互性：分析师需要灵活的工具，特别是当他们处理混淆的或受保护的代码块。JEB的强大的用户界面，使您可以检查交叉引用，重命名的方法，字段，类，代码和数据之间导航，做笔记，添加注释，以及更多。</p>
-<p>3)可全面测试APK文件内容：检查解压缩的资源和资产，证书，字符串和常量等。追踪您的进展情况。<br>不要让研究的工时浪费。</p>
-<p>4)支持多平台（Win/Linux/Mac）</p>
-<p><strong>6. <a href="https://codeinspect.sit.fraunhofer.de/" target="_blank" rel="external">codeinspect</a></strong></p>
-<p>CodeInspect是由德国Paderborn University和TU Darmstadt的软件安全团队研发的一款基于Jimple的Android应用分析工具。CodeInspect的软件是Eclipse框架开发的，所以我们可以像使用IDE一样对Android应用进行分析和调试，也可以直接插入或者修改Java代码。<br>CodeInspect是一款强大的分析工具，拥有源码级别的调试和修改功能，当然也有一些缺点，比如某些加固过的APK无法正常反编译，没有类似JEB的JAVA级别的代码，不支持Native层的调试等。</p>
-<p><strong>7. <a href="https://github.com/konloch/bytecode-viewer/releases" target="_blank" rel="external">bytecodeviewer</a></strong></p>
-<p>BytecodeViewer是一个先进的轻量级Java字节码查看器，它是一款基于图形界面的Java反编译器，Java字节码编辑器，APK编辑器，Dex编辑器，APK反编译器，DEX反编译器，Procyon Java反编译器，CFR Java反编译器，以及FernFlower Java反编译器。不仅如此，它还是一款Hex查看器，代码搜索器和代码调试器。除此之外，它还具备Smali和Baksmali等汇编器的相关功能。</p>
-<p><strong>8. <a href="https://github.com/google/android-classyshark" target="_blank" rel="external">ClassyShark</a></strong></p>
-<p>ClassyShark是一款可以查看Android可执行文件的浏览工具，支持.dex, .aar, .so, .apk, .jar, .class, .xml 等文件格式，分析里面的内容包括classes.dex文件，包、方法数量、类、字符串、使用的NativeLibrary等。</p>
-<p>参考网址：</p>
-<p><a href="https://github.com/Juude/droidReverse" title="https://github.com/Juude/droidReverse" target="_blank" rel="external">https://github.com/Juude/droidReverse</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </article>
 
 
-    
-      
 
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/15/开博客啦！/" itemprop="url">
-                  开博客啦！
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-15T00:18:42+08:00" content="2016-08-15">
-              2016-08-15
-            </time>
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/08/15/开博客啦！/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/15/开博客啦！/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-		  
-			
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="开博客啦！"><a href="#开博客啦！" class="headerlink" title="开博客啦！"></a>开博客啦！</h1><p>人们都说不爱折腾的程序猿不是好程序猿，以前折腾过，不过还是放弃了，现在又折腾了两天，终于把博客弄好了！</p>
-<p>博客主要是通过Github+Hexo组成，这里有一个需要注意的，Hexo部署到Github时，只提交public文件夹。开始还没发现，最后搭好的时候上Github上才发现，这让我很不愉快啦，万一我要多个客户端操作呢？因此在仓库中建立两个分支才行，这个一定得注意！</p>
-<hr>
-<ul>
-<li>建立两个分支，一个管理源码（src）；另外一个专门用于静态页面展示（master）——就是Hexo默认提交的public文件夹里面的内容！</li>
-<li>建立两个分支，一个管理源码（src）；另外一个专门用于静态页面展示（master）——就是Hexo默认提交的public文件夹里面的内容！</li>
-<li>建立两个分支，一个管理源码（src）；另外一个专门用于静态页面展示（master）——就是Hexo默认提交的public文件夹里面的内容！<br>（重要的事情说三遍！！！）</li>
-</ul>
-<hr>
-<p>只要注意到了这一点儿，剩下的看下教程就很简单啦，主要就是这两篇教程就行了，附上链接：</p>
-<p><a href="http://www.rolrence.cn/2016/07/31/deploy-hexo-blog/" target="_blank" rel="external">http://www.rolrence.cn/2016/07/31/deploy-hexo-blog/</a><br><a href="http://lijianchang.xyz/2016/03/16/%E5%B0%8F%E7%99%BD%E7%8B%AC%E7%AB%8B%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-Github-Pages%E5%92%8CHexo%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/" target="_blank" rel="external">http://lijianchang.xyz/2016/03/16/%E5%B0%8F%E7%99%BD%E7%8B%AC%E7%AB%8B%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2-Github-Pages%E5%92%8CHexo%E7%AE%80%E6%98%8E%E6%95%99%E7%A8%8B/</a></p>
-<p>第一次就写到这里了，从今天开始努力记录工作、学习、生活中的点点滴滴！加油！</p>
-<h2 id="给自己说声晚安！"><a href="#给自己说声晚安！" class="headerlink" title="给自己说声晚安！"></a>给自己说声晚安！</h2>
-          
-        
+    <div class="post-spread">
       
     </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
@@ -768,6 +529,14 @@ gradle.taskGraph.whenReady { taskGraph -&gt;
 
 
           
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/10/30/gradle-问题总结/"
+           data-title="gradle 问题总结" data-url="http://yoursite.com/2016/10/30/gradle-问题总结/">
+      </div>
+    
+  </div>
+
 
         </div>
         
@@ -787,8 +556,17 @@ gradle.taskGraph.whenReady { taskGraph -&gt;
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/lyg.jpg"
@@ -853,6 +631,17 @@ gradle.taskGraph.whenReady { taskGraph -&gt;
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -956,6 +745,10 @@ gradle.taskGraph.whenReady { taskGraph -&gt;
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
